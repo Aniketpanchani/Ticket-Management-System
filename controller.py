@@ -81,53 +81,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             else:
                 self._send_response(404, {"error": "Endpoint not found"})
 
-    # def do_GET(self):
-    #     decoded_token = self._authenticate()
-    #     if not decoded_token:
-    #         return
-
-    #     decoded_role = decoded_token['role']
-    #     requestor_id = decoded_token.get('user_id')
-        
-    #     print(f"Requested Path: {self.path}")
-
-    #     if self.path == "/users" and decoded_role == 'admin':
-    #         response, status = Userservice1.get_user_profiles(requestor_role=decoded_role)
-        
-    #     elif self.path.startswith("/profile/"):
-    #         try:
-    #             user_id = int(self.path.split("/")[-1])
-    #             response, status = Userservice1.get_user_profiles(user_id=user_id, requestor_role=decoded_role, requestor_id=requestor_id)
-    #         except ValueError:
-    #             response, status = {"error": "Invalid ID format"}, 400
-        
-    #     elif self.path == "/Tickets":
-    #         if decoded_role != 'admin':
-    #             self._send_response(403, {'error': 'Forbidden'})
-    #             return
-    #         response, status = Userservice1.get_all_tickets()
-    #     elif self.path.startswith("/ticket/"):
-    #         try:
-    #             path_parts = self.path.split("/")
-    #             if len(path_parts) == 3 and path_parts[2].isdigit():
-    #                 ticket_id = int(path_parts[2])
-    #                 decoded_token = self._authenticate()
-    #                 requestor_id = decoded_token.get('user_id')
-    #                 decoded_role = decoded_token.get('role')
-                    
-    #                 response, status = Userservice1.get_ticket(ticket_id, requestor_id, decoded_role)
-    #             else:
-    #                 response, status = {'error': 'Invalid ID format'}, 400
-    #         except ValueError:
-    #           response, status = {'error': 'Invalid ID format'}, 400
-
-        
-    #     else:
-    #         response, status = {'error': 'Endpoint not found'}, 404
-
-    #     # Now send the response with the status code
-
-    #     self._send_response(status, response)
+   
     def do_GET(self):
         decoded_token = self._authenticate()
         if not decoded_token:
@@ -220,14 +174,6 @@ class RequestHandler(BaseHTTPRequestHandler):
 
         else:
             self._send_response(404, {"error": "Endpoint not found"})
-
-        
-
-# def run(server_class=HTTPServer, handler_class=RequestHandler, port=8000):
-#      server_address = ('', port)
-#      httpd = server_class(server_address, handler_class)
-#      print(f"Starting server on port {port}...")
-#      httpd.serve_forever()
 
 # if __name__ == "__main__":
 #    create_tables()
