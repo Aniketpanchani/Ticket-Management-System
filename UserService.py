@@ -305,31 +305,8 @@ class Userservice1(BaseHTTPRequestHandler):
 
         return {"message": "Ticket assigned successfully."}, 200
 
-    # def change_ticket_status(ticket_id, status, requestor_role, requestor_id):
-    #     if status not in ['Open', 'In Progress', 'Resolved', 'Closed']:
-    #         return {"error": "Invalid status value."}, 400
-
-    #     connection = create_connection()
-    #     cursor = connection.cursor()
-
-    #     cursor.execute("SELECT * FROM Ticket WHERE ticket_id = %s", (ticket_id,))
-    #     ticket = cursor.fetchone()
-        
-    #     if not ticket:
-    #         return {"error": "Ticket not found."}, 404
-
-    #     if requestor_role != 'admin' and ticket['created_by'] != requestor_id:
-    #         return {"error": "Forbidden"}, 403
-
-    #     query = "UPDATE Ticket SET status = %s WHERE ticket_id = %s"
-    #     cursor.execute(query, (status, ticket_id))
-    #     connection.commit()
-
-    #     cursor.close()
-    #     connection.close()
-
-    #     return {"message": "Ticket status updated successfully."}, 200 
-    def change_ticket_status(ticket_id, status, requestor_role, requestor_id):
+ 
+     def change_ticket_status(ticket_id, status, requestor_role, requestor_id):
         if status not in ['Open', 'In Progress', 'Resolved', 'Closed']:
             return {"error": "Invalid status value."}, 400
 
